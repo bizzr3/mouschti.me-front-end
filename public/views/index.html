@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/assets/css/app.css" />
+    <script src="/jquery/jquery.js"></script>
+
+    <script type="text/javascript">
+        setInterval(() => {
+            $('.line__.active').find('.__cursor__').toggle();
+        }, 250)
+
+        $(document).keypress((e) => {
+            let active_input = $('.line__.active').find('.shell_out__');
+
+            let content__ = active_input.text() +
+                String.fromCharCode(e.charCode);
+
+            active_input.text(content__);
+        })
+
+        $(document).keydown((e) => {
+            let shell__ = $('.line__.active').find('.shell_out__');
+
+            if (e.keyCode == 8) {
+                shell__.text(shell__.text().substring(0, shell__.text().length - 1));
+                return;
+            }
+
+            if (e.keyCode == 76 && e.ctrlKey) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $('.line__:not(.active)').remove();
+            }
+        });
+
+        $(document).keyup((e) => {
+            if (e.keyCode == 13) {
+                $('.line__.active').find('.__cursor__').remove();
+                $('.line__').removeClass('active');
+
+                let line_ = $('<div>');
+                line_.addClass('line__');
+                line_.addClass('active');
+
+                content_ = $('<p>');
+                content_.addClass('font');
+                content_.html('root@10.0.0.1:~$&nbsp;<span class="shell_out__"></span><span class="__cursor__" style="display: none;">█</span>');
+
+                line_.append(content_);
+                $('#screen').append(line_);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="head">
+        <!-- <p>MOJTABA BAKHTIAREE PORTFOLIO</p>
+        <p id="coming_soon__">fore more info, contact me at mojtaba.bakhtiaree [at] gmail.com</p> -->
+    </div>
+
+    <div id="bar">
+        <div id="red">
+        </div>
+        <div id="yellow">
+        </div>
+        <div id="green">
+        </div>
+    </div>
+    <div id="screen">
+        <div class="line__ active">
+            <p class="font">root@10.0.0.1:~$&nbsp;<span class='shell_out__'></span></span><span class="__cursor__">█</span>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
