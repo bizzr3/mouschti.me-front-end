@@ -41,6 +41,8 @@
 
         $(document).keyup((e) => {
             if (e.keyCode == 13) {
+                let screen__ = $('#screen');
+
                 $('.line__.active').find('.__cursor__').remove();
                 $('.line__').removeClass('active');
 
@@ -53,7 +55,7 @@
                 content_.html('root@10.0.0.1:~$&nbsp;<span class="shell_out__"></span><span class="__cursor__" style="display: none;">█</span>');
 
                 line_.append(content_);
-                $('#screen').append(line_);
+                screen__.append(line_).scrollTop(99999);
             }
         });
     </script>
