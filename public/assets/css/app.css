@@ -73,7 +73,8 @@ body {
   padding: 5px;
   overflow-y: auto;
 }
-.font {
+.font,
+p {
   color: #fff;
   font-family: monospace;
   font-size: 15px;
@@ -87,4 +88,10 @@ body {
 
 .shell_out__ {
   overflow-wrap: break-word;
+}
+
+.reply_line_ {
+  margin: 5px;
+  margin-top: -7px;
+  margin-bottom: -7px;
 }

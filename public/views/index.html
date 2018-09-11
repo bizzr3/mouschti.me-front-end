@@ -8,57 +8,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="/public/assets/css/app.css" />
     <script src="/jquery/jquery.js"></script>
-
-    <script type="text/javascript">
-        setInterval(() => {
-            $('.line__.active').find('.__cursor__').toggle();
-        }, 250)
-
-        $(document).keypress((e) => {
-            let active_input = $('.line__.active').find('.shell_out__');
-
-            let content__ = active_input.text() +
-                String.fromCharCode(e.charCode);
-
-            active_input.text(content__);
-        })
-
-        $(document).keydown((e) => {
-            let shell__ = $('.line__.active').find('.shell_out__');
-
-            if (e.keyCode == 8) {
-                shell__.text(shell__.text().substring(0, shell__.text().length - 1));
-                return;
-            }
-
-            if (e.keyCode == 76 && e.ctrlKey) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                $('.line__:not(.active)').remove();
-            }
-        });
-
-        $(document).keyup((e) => {
-            if (e.keyCode == 13) {
-                let screen__ = $('#screen');
-
-                $('.line__.active').find('.__cursor__').remove();
-                $('.line__').removeClass('active');
-
-                let line_ = $('<div>');
-                line_.addClass('line__');
-                line_.addClass('active');
-
-                content_ = $('<p>');
-                content_.addClass('font');
-                content_.html('root@10.0.0.1:~$&nbsp;<span class="shell_out__"></span><span class="__cursor__" style="display: none;">█</span>');
-
-                line_.append(content_);
-                screen__.append(line_).scrollTop(99999);
-            }
-        });
-    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/assets/js/app.js"></script>
 </head>
 
 <body>
