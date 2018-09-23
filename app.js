@@ -1,4 +1,6 @@
 'use strict';
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const request = require('request');
@@ -6,11 +8,11 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const path = require('path');
 
-app.use('/public', express.static(__dirname + '/public'));
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/public', express.static(process.env.PWD + '/public'));
+app.use('/jquery', express.static(process.env.PWD + '/node_modules/jquery/dist/'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/views/index.html'));
+  res.sendFile(path.join(process.env.PWD + '/public/views/index.html'));
 });
 
 io.on('connection', client => {
