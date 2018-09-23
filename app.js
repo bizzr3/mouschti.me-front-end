@@ -22,7 +22,7 @@ io.on('connection', client => {
     console.log(data);
 
     request(
-      'http://dev-api.mouschti.me/api/v1/version',
+      process.env.API_URL + 'version',
       (error, response, body) => {
         setTimeout(() => {
           client.emit('cmd_', body);
